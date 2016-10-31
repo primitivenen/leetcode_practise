@@ -1,0 +1,8 @@
+    public String reverseString(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        int len = s.length()-1;
+        for(int i=len; i>=0; i--){
+            sb.setCharAt(len-i,s.charAt(i));
+        }
+        return sb.toString();
+    }
