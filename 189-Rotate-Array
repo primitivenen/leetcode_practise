@@ -1,0 +1,17 @@
+public class Solution {
+    public void rotate(int[] nums, int k) {
+        int len = nums.length;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+
+        k = k%len;
+        for(int i=k; i>0; i--){
+            list.add(nums[len-i]);
+        }
+        for(int j=0; j<len-k; j++){
+            list.add(nums[j]);
+        }
+        for(int m=0; m<len; m++){
+            nums[m]=list.get(m);
+        }
+    }
+}
