@@ -1,4 +1,5 @@
 public class Solution {
+/* Approach 1*/
     public void rotate(int[] nums, int k) {
         int len = nums.length;
         ArrayList<Integer> list = new ArrayList<Integer>();
@@ -12,6 +13,34 @@ public class Solution {
         }
         for(int m=0; m<len; m++){
             nums[m]=list.get(m);
+        }
+    }
+/* Approach 2*/
+    public void rotate(int[] nums, int k) {
+        int len = nums.length;
+        k=k%len;
+        int[] temp = new int[k];
+        for(int j=0; j<k;j++){
+            temp[j] = nums[len-k+j];
+        }
+        for(int i = len-1; i>=k; i--){
+            nums[i]=nums[i-k];
+        }
+        for(int m=0;m<k;m++){
+            nums[m] =temp[m];
+        }
+    }
+/* Approach 3*/
+    public void rotate(int[] nums, int k) {    
+        int len = nums.length;
+        k=k%len;
+        while(k>0){
+            int t = nums[len-1];
+            for(int i = len-1; i>0; i--){
+                nums[i]=nums[i-1];
+            }
+            nums[0] = t;
+            k--;
         }
     }
 }
