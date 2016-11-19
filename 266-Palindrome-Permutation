@@ -1,0 +1,24 @@
+/* 出错在Exception in thread "main"，有可能是中间别的函数错了，一层层嵌套过来。
+*/
+
+public class Solution {
+    public boolean canPermutePalindrome(String s) {
+        int len = s.length();
+        HashMap<Character, Integer> freq = new HashMap<Character, Integer>();
+        for(int i=0; i<len; i++){
+            char letter = s.charAt(i);
+            if(freq.containsKey(letter))
+                freq.put(letter, freq.get(letter)+1);
+            else
+                freq.put(letter, 1);
+        }
+        int oddnum = 0;
+        for(Character c:freq.keySet()){
+            if(freq.get(c) % 2 != 0)
+                oddnum++;
+        }
+        if(oddnum>1)
+            return false;
+        return true;
+    }
+}
