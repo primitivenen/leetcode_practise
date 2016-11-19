@@ -1,3 +1,6 @@
+/* （1）对于 HashMap 来说，不可以一边使用 KeySet() 访问所有key，一边删除某个key
+   （2）判断两个HashMap，其实只需要建立一个HashMap，另一个通过逐个删除就可以判断 */
+   
 import java.util.*;
 
 public class Solution {
