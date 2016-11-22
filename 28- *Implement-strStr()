@@ -1,0 +1,52 @@
+//注意边界
+
+public class Solution {
+    public int strStr(String haystack, String needle) {
+        /*Approach 1*/
+        /*
+        return haystack.indexOf(needle);
+        */
+        /*Approach 2*/
+        /*
+        int h_len = haystack.length();
+        int n_len = needle.length();
+
+        if(n_len == 0){
+            return 0;
+        }
+        if(h_len == 0 || h_len<n_len){
+            return -1;
+        }
+        for(int i=0; i<=h_len-n_len; i++){
+            if(haystack.substring(i,i+n_len).equals(needle)){
+                return i;
+            }
+        }
+        return -1;
+        */
+        /*Approach 3*/
+        
+        int h_len = haystack.length();
+        int n_len = needle.length();
+        
+        if(n_len == 0){
+            return 0;
+        }
+        if(h_len == 0 || h_len<n_len){
+            return -1;
+        }
+
+        for(int i=0; i<=h_len-n_len; i++){
+            for(int j=0; j<n_len; j++){
+                if(haystack.charAt(i+j) == needle.charAt(j)){
+                    if(j==n_len-1){
+                        return i;
+                    }
+                } else{
+                    break;
+                }
+            }
+        }
+        return -1;
+    }
+}
