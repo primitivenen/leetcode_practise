@@ -1,3 +1,5 @@
+//问题：删掉了的node好像还在那里啊？
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
