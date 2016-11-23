@@ -1,0 +1,40 @@
+public class Solution {
+    public int myAtoi(String str) {
+        if(str==null || str.length()==0){
+            return 0;
+        }
+        str=str.trim();
+        long result = 0;
+        char flag = '+';
+        int i=0;
+        if(str.charAt(i)=='-'){
+            flag = '-';
+            i++;
+        } else if(str.charAt(i)=='+'){
+            i++;
+        }
+        for(; i<str.length(); i++){
+            if(str.charAt(i)>='0' && str.charAt(i)<='9'){
+               /* if(flag=='+' && result>=(Integer.MAX_VALUE-(str.charAt(i)-'0'))/10){
+                    return Integer.MAX_VALUE;
+                }
+                else if(flag=='-' && -result<=(Integer.MIN_VALUE+(str.charAt(i)-'0'))/10){
+                    return Integer.MIN_VALUE;
+                }*/
+                result = result * 10 + (str.charAt(i)-'0');
+                if(flag=='+' && result>=Integer.MAX_VALUE){
+                    return Integer.MAX_VALUE;
+                }
+                else if(flag=='-' && -result<=Integer.MIN_VALUE){
+                    return Integer.MIN_VALUE;
+                }
+            }
+            else
+                break; //不然无法执行负号
+        }
+        if(flag=='-'){
+            result = -result;
+        }
+        return (int)result;
+    }
+}
