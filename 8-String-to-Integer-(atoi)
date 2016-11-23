@@ -1,3 +1,10 @@
+/*
+（1）null是内存中的一个固定区域，所有null都指向这里；空字符串需要分配空间
+（2）如果需要特别处理i=0的情况，可以提出去处理
+（3）循环中break的使用
+（4）越界的处理
+*/
+
 public class Solution {
     public int myAtoi(String str) {
         if(str==null || str.length()==0){
