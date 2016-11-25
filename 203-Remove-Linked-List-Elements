@@ -9,7 +9,7 @@
  // Next 是一个指针，next改变就改变指向
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode list = new ListNode(0);
+        ListNode list = new ListNode(0);  //构建一个指向head的pseudo-node，避免需要单独处理head
         list.next = head; 
         ListNode ln = list;
         while(ln.next!=null){ //判断是不是最后一个结点
