@@ -1,0 +1,20 @@
+public class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if(strs==null || strs.length==0)
+            return "";
+        int maxlen=strs[0].length();
+        int i=0;
+        for(i=1;i<strs.length;i++){
+            int j=0;
+            for(; j<Math.min(maxlen,strs[i].length()); j++){
+                if(strs[i].charAt(j)!=strs[0].charAt(j)){
+                    
+                    break;
+                }
+                
+            }
+            maxlen = Math.min(maxlen, j);
+        }
+        return strs[0].substring(0, maxlen);
+    }
+}
