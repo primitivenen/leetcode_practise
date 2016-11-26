@@ -1,0 +1,11 @@
+//如果结尾有好多空格
+
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        s=s.trim();
+        if(s==null||s.length()==0)
+            return 0;
+        String[] str = String.valueOf(s).split(" ");
+        return str[str.length-1].length();
+    }
+}
