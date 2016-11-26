@@ -1,3 +1,5 @@
+//等于val的都被跳过，不等的都被保存了
+
 public class Solution {
     public int removeElement(int[] nums, int val) {
         int j=0;
