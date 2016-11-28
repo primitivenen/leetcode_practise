@@ -1,0 +1,16 @@
+public class Solution {
+    public boolean repeatedSubstringPattern(String str) {
+        int strlen = str.length();
+        boolean result = false;
+        if(str==null||strlen<2){
+            return false;
+        }
+        for(int i=1; i<=strlen/2; i++){  //i表示分段长度
+            if(strlen % i == 0){
+                String regex = "(" + str.substring(0, i) +")" +"+";
+                result = result|str.matches(regex);
+            }
+        }
+        return result;
+    }
+}
