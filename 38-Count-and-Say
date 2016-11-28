@@ -1,0 +1,27 @@
+public class Solution{
+    public String countAndSay(int n) {
+    	
+    	String number = String.valueOf(1);
+        for(int i=0; i<n-1; i++){
+        	number=func(number);
+        }
+        return number;
+    }
+        
+    public String func(String number){	
+        StringBuilder newnum = new StringBuilder();
+        int count = 1;
+        for(int i=0; i<number.length(); i++){        	
+            while(i<=number.length()-2 && number.charAt(i)==number.charAt(i+1)){
+                count++;
+                i++;
+            }
+            
+            newnum.append(count);
+            count=1;
+            
+            newnum.append(number.charAt(i));                                       
+        }
+        return newnum.toString();
+    }
+}
