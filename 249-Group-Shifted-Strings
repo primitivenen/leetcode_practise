@@ -1,0 +1,36 @@
+public class Solution {
+    public static List<List<String>> groupStrings(String[] strings) {
+        List<List<String>> list = new ArrayList<List<String>>();
+        HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
+        for(int i=0; i<strings.length; i++){
+        	int len = strings[i].length();
+        	StringBuilder str = new StringBuilder();
+            for(int j = 0; j<len-1; j++){
+            // 错误答案	str.append(strings[i].charAt(j+1)-strings[i].charAt(j));
+            //正确答案    str.append((strings[i].charAt(j+1)-strings[i].charAt(j)+26) % 26);
+                int diff = (strings[i].charAt(j+1)-strings[i].charAt(j));
+                if(diff < 0) diff += 26; str.append(diff);
+            /* a b c d e ... z a b c d e f ... z a b c ... z
+a - b = -1
+but look the second a
+and the first b
+a - b = -1 + 26
+you are working on a circle
+which is the same as by concantenating two [a ... z]   */
+            }
+            if(map.containsKey(str.toString())){
+            	map.get(str.toString()).add(strings[i]);
+            }
+            else{
+            	ArrayList<String> al = new ArrayList<String>();
+            	al.add(strings[i]);
+            	map.put(str.toString(), al);
+            }
+        }
+        
+        for(String s:map.keySet()){
+        	list.add(map.get(s));
+        }
+        return list;
+    }
+}
