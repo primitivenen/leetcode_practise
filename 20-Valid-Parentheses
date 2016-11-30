@@ -1,0 +1,43 @@
+public class Solution {
+    public class Bracket{
+        char type;
+        int position;
+        
+        Bracket(char type, int position){
+            this.type = type;
+            this.position = position;
+        }
+        
+        boolean isMatch(char c){
+            if(this.type == '(' && c == ')'){
+                return true;
+            }
+            if(this.type == '{' && c == '}'){
+                return true;
+            }
+            if(this.type == '[' && c == ']'){
+                return true;
+            }
+            return false;
+        }
+    }
+    public boolean isValid(String s) {
+        Stack<Bracket> bracket_stack = new Stack<Bracket>(); 
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
+            if(c== '(' || c=='{' || c=='['){  //注意，或是“||”，不是“|”
+                bracket_stack.push(new Bracket(c, i));
+            }
+            if(c==')' || c=='}' || c==']'){
+                if(bracket_stack.isEmpty())
+                    return false;
+                if(!bracket_stack.pop().isMatch(c)) //注意，判断false不要用==false，显得不专业
+                    return false;
+            }
+        }
+        if(bracket_stack.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+}
