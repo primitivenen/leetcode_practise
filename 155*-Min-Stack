@@ -1,3 +1,8 @@
+/*
+既然minstack里的都一样
+为什么还要在pop stack的时候把minstack一起pop
+为什么pop和stack.peep()一样的值是不对的？*/
+
 public class MinStack {
     private Stack<Integer> stack; 
     private Stack<Integer> minstack;
