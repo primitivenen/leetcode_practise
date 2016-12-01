@@ -1,0 +1,41 @@
+class MyQueue {
+    
+    Stack<Integer> mystack = new Stack<Integer>();
+    Stack<Integer> reverse_stack = new Stack<Integer>();
+    
+    // Push element x to the back of queue.
+    public void push(int x) {
+        mystack.push(x);
+    }
+
+    // Removes the element from in front of queue.
+    public void pop() {
+        if(reverse_stack.isEmpty()){
+        // 注意：每次更新的时候要加上下面三行，因为栈都是空的。一开始构造函数种没有必要做，因为可能没法协调好
+            while(!mystack.isEmpty()){
+                reverse_stack.push(mystack.pop());
+            }
+            if(!mystack.isEmpty())
+                return;
+        }        
+        reverse_stack.pop();
+    }
+
+    // Get the front element.
+    public int peek() {
+        if(reverse_stack.isEmpty()){
+        // 注意：每次更新的时候要加上下面三行，因为栈都是空的
+            while(!mystack.isEmpty()){
+                reverse_stack.push(mystack.pop());
+            }
+            if(!mystack.isEmpty())
+                return -1;
+        }
+        return reverse_stack.peek();
+    }
+
+    // Return whether the queue is empty.
+    public boolean empty() {
+        return mystack.isEmpty() && reverse_stack.isEmpty(); //两个栈的元素之和才是所有元素
+    }
+}
