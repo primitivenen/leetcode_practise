@@ -1,0 +1,65 @@
+class MyStack {
+    Queue<Integer> myqueue = new LinkedList<Integer>();
+    Queue<Integer> reverse_queue = new LinkedList<Integer>();
+    // Push element x onto stack.
+    public void push(int x) {
+        myqueue.add(x);
+    }
+
+    // Removes the element on top of the stack.
+    public void pop() {
+        
+            if(myqueue.isEmpty()){
+            	return;
+            }
+            //if(myqueue.size()==1){
+            //    myqueue.remove();
+                
+            // 跟后面 myqueue.remove()重复操作啦}
+            while(myqueue.size()>1){
+            	reverse_queue.add(myqueue.poll());
+            }
+            myqueue.remove();
+            /*too slow
+            while(!reverse_queue.isEmpty()){
+                myqueue.add(reverse_queue.remove(0));
+            }*/
+            if(!reverse_queue.isEmpty()){
+                Queue<Integer> temp = myqueue;
+                myqueue = reverse_queue;
+                reverse_queue = temp;
+            }
+    }
+
+    // Get the top element.
+    public int top() {
+        if(reverse_queue.isEmpty()){
+            if(myqueue.isEmpty()){
+            	return -1;
+            }
+            if(myqueue.size()==1){
+                return myqueue.peek();
+            }
+            while(myqueue.size()>1){
+            	reverse_queue.add(myqueue.poll());
+            }
+        }     
+        int result = myqueue.peek();
+        reverse_queue.add(myqueue.poll());  //现在myqueue里面还有一个，没法直接替换
+            /*too slow
+            while(!reverse_queue.isEmpty()){
+                myqueue.add(reverse_queue.remove(0));
+            }*/
+        if(!reverse_queue.isEmpty()){
+            Queue<Integer> temp = myqueue;
+            myqueue = reverse_queue;
+            reverse_queue = temp;
+        }
+        return result;
+    }
+
+    // Return whether the stack is empty.
+    public boolean empty() {
+        return myqueue.isEmpty() && reverse_queue.isEmpty();
+    }
+}
