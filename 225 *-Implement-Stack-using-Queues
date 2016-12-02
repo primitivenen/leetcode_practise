@@ -1,3 +1,4 @@
+//用Queue这个interface就相当于在LinkedList里选了一些函数来用
 class MyStack {
     Queue<Integer> myqueue = new LinkedList<Integer>();
     Queue<Integer> reverse_queue = new LinkedList<Integer>();
