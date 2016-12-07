@@ -1,0 +1,45 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode temp = new ListNode(0);
+        temp.next = head;
+        ListNode pt = temp;
+        ListNode pt2 = temp;
+        int i=0;
+        //int j=0;
+        if(head==null){
+            return temp.next;
+        }
+        while(pt.next!=null){
+            pt=pt.next;
+            i++;
+            /*if(i==1 && n==1){
+                temp.next = temp.next.next;
+                break;
+            }*/
+            if(i==n){
+                break;
+            }
+        }
+        while(pt.next!=null){
+            //i++;
+            //j++;
+            pt=pt.next;
+            pt2=pt2.next;
+            //if(pt.next==null){
+                
+            //}
+        }
+        
+        pt2.next=pt2.next.next;  //不能放在while循环里，因为while循环可能本来就不用执行
+        
+        return temp.next;
+    }
+}
