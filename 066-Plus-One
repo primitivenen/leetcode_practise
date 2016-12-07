@@ -1,0 +1,55 @@
+public class Solution {
+    public int[] plusOne(int[] digits) {
+        int len = digits.length;
+        int num = 0;
+        int c = 1;
+        
+        int quotient = (digits[len-1]+c)/10;
+        int reminder = (digits[len-1]+c)%10;
+        
+            
+        
+        if(len==1){
+            if(quotient==1){
+                int[] newnum = new int[2];
+                newnum[0]=quotient;
+                newnum[1]=reminder;
+                return newnum; 
+            } 
+        }
+        boolean if9 = true;
+        for(int j=0; j<=len-1; j++){
+            if(digits[j]!=9){
+                if9=false;
+                break;
+            }
+        }
+        
+        int[] newnum = new int[len+1];
+        if(if9==true){
+            newnum[0]=1;
+            for(int k=1; k<=len; k++){
+                newnum[k]=0;
+            }    
+            return newnum;
+        }
+            
+        if(if9==false){    
+            digits[len-1]=reminder;   //注意这个语句的位置
+            for(int i=len-2; i>=0; i--){
+            
+            //注意下面两个语句的位置
+                reminder = (digits[i]+quotient)%10;
+                quotient = (digits[i]+quotient)/10;
+                if(quotient==1){
+                    digits[i]=reminder;
+                    continue;
+                }else{
+                    digits[i]=reminder;
+                    break;
+                }
+            }
+        }
+        return digits;
+    }
+}
