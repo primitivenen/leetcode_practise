@@ -1,0 +1,65 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode swapPairs(ListNode head) {
+        ListNode newhead = new ListNode(0);
+        newhead.next = head;
+        ListNode pt = newhead;
+        if(head == null || head.next == null){
+            return head;
+        }
+        while(pt.next!=null){
+            ListNode temp = pt.next;
+            ListNode temp2 = pt.next.next;
+            if(temp.next == null){            //.next如果是null，就不存在.next.next。如果奇数直接break
+                break;
+            }
+            temp.next = temp.next.next;            
+            pt.next = temp2;
+            pt = pt.next;
+            pt.next = temp;
+            pt = temp;
+            
+        }
+        return newhead.next;
+    }
+}
+
+//Simplified Version
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode swapPairs(ListNode head) {
+        ListNode newhead = new ListNode(0);
+        newhead.next = head;
+        ListNode pt = newhead;
+
+        while(pt.next!=null){
+            ListNode temp = pt.next;
+            ListNode temp2 = temp.next;
+            if(temp2 == null){
+                break;
+            }
+            
+            temp.next = temp2.next;
+            temp2.next = temp;
+            pt.next = temp2;
+            pt = temp;
+        }
+        
+        return newhead.next;
+    }
+}
