@@ -33,3 +33,24 @@ public class Solution {
         return q;
     }
 }
+
+
+//Approach 2
+
+if(head==null){
+    return null;
+}
+
+prev = head;
+p = head->next;
+head->next = null;
+
+while(p != null)
+{
+Node q = p->next;
+p->next = prev;
+prev = p;
+p = q;
+}
+
+return prev;
