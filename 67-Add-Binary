@@ -1,0 +1,34 @@
+//注意： int和char的转换
+
+public class Solution {
+    public String addBinary(String a, String b) {
+        int len_a = a.length();
+        int len_b = b.length();
+        
+        int quotient = 0;
+        int reminder = 0; 
+        if(len_a<len_b){
+            String temp = b;
+            b=a;
+            a=temp;
+        }
+        StringBuilder str = new StringBuilder();
+        int i=a.length()-1;
+        int j=b.length()-1;
+        for(; i>=0 && j>=0; i--,j--){
+            reminder = (a.charAt(i)-'0'+b.charAt(j)-'0'+quotient)%2;
+            quotient = (a.charAt(i)-'0'+b.charAt(j)-'0'+quotient)/2;
+            str.append((char)(reminder+'0'));
+        }
+        while(i>=0){
+            reminder = (a.charAt(i)-'0'+quotient)%2;
+            quotient = (a.charAt(i)-'0'+quotient)/2; 
+            str.append((char)(reminder+'0'));
+            i--;
+        }
+        if(quotient == 1){
+            str.append('1');
+        }
+        return str.reverse().toString();
+    }
+}
