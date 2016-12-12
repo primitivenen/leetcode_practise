@@ -1,0 +1,29 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        return sumOfLeftLeaves(root, false);
+    }
+    
+    public int sumOfLeftLeaves(TreeNode root, boolean isLeft) {
+        int sum = 0;
+        if(root == null){
+            return 0;
+        }
+        
+        if(root.right == null && root.left == null && isLeft) sum += root.val;
+        else{
+        sum += sumOfLeftLeaves(root.right, false);
+        sum += sumOfLeftLeaves(root.left, true);
+        }
+        
+        return sum;
+    }
+}
