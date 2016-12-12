@@ -7,6 +7,9 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+ 
+//注意： 需要另外传东西，所以需要另外写一个函数
+
 public class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
         return sumOfLeftLeaves(root, false);
