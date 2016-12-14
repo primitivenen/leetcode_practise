@@ -1,0 +1,53 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    /*如果题目说从根节点开始，这样就对了
+    public int pathSum(TreeNode root, int sum) {
+        int num = 0;
+        if(root == null){
+            return 0;
+        }
+        
+        if(root.val == sum){
+            num ++;
+        }
+            num += pathSum(root.left, sum-root.val);
+            num += pathSum(root.right, sum-root.val);
+        return num;
+    }*/
+    
+    public int pathSumFromNode(TreeNode root, int sum) {
+        int num = 0;
+        if(root == null){
+            return 0;
+        }
+        
+        if(root.val == sum){
+            num ++;
+        }
+        
+            num += pathSumFromNode(root.left, sum-root.val);
+            num += pathSumFromNode(root.right, sum-root.val);
+        return num;
+    }
+    
+    public int pathSum(TreeNode root, int sum) {
+        int num = 0;
+        num += pathSumFromNode(root, sum);
+        
+        if(root != null)
+        {
+            num += pathSum(root.left, sum);
+            num += pathSum(root.right, sum);
+        }
+        return num;
+    }
+
+}
