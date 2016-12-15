@@ -1,0 +1,29 @@
+public class Solution {
+    public String reverseVowels(String s) {
+        char[] chararray = s.toCharArray();
+        int start = 0;
+        int end = s.length() - 1;
+        while(start < end){
+            if(isVowel(chararray[start]) && isVowel(chararray[end])){
+                char temp = chararray[end];
+                chararray[end] = chararray[start];
+                chararray[start] = temp;
+                start++;
+                end--;
+            }
+            if(!isVowel(chararray[start])){
+                start++;
+            }
+            if(!isVowel(chararray[end])){
+                end--;
+            }
+        }
+        return new String(chararray);  // charArray 不能直接使用toString()转化为字符串
+    }
+    public boolean isVowel(char c){
+        if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U')
+            return true;
+        else
+            return false;
+    }
+}
