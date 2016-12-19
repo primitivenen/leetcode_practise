@@ -1,0 +1,53 @@
+public class Solution {
+    //方法一：HashMap
+    /*
+    public int[] intersect(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> mymap = new HashMap<Integer, Integer>();
+        for(int i :nums1){
+            if(mymap.containsKey(i)){
+                mymap.put(i,mymap.get(i)+1);
+            }else{
+                mymap.put(i,1);
+            }
+        }
+        ArrayList<Integer> mylist = new ArrayList<Integer>();
+        for(int j : nums2){
+            if(mymap.containsKey(j)){
+                if(mymap.get(j)>1){
+                    mymap.put(j, mymap.get(j)-1);
+                }else{
+                    mymap.remove(j);
+                }
+                mylist.add(j);
+            }
+        }
+        int[] result = new int[mylist.size()];
+        for(int k=0; k<mylist.size(); k++){
+            result[k] = mylist.get(k);
+        }
+        return result;
+    } */
+    //方法二 array sort, two pointers
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        ArrayList<Integer> mylist = new ArrayList<Integer>();
+        int p1=0, p2=0;
+        while(p1<nums1.length && p2<nums2.length){
+            if(nums1[p1]<nums2[p2]){
+                p1++;
+            } else if(nums1[p1]>nums2[p2]){
+                p2++;
+            } else {
+                mylist.add(nums1[p1]);
+                p1++;
+                p2++;
+            }
+        }
+        int[] result = new int[mylist.size()];
+        for(int i=0; i<mylist.size(); i++){
+            result[i] = mylist.get(i);
+        }
+        return result;
+    }
+}
