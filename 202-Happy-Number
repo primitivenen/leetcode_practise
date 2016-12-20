@@ -1,0 +1,38 @@
+public class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> answers = new HashSet<Integer>();
+        while(!answers.contains(n)){
+            answers.add(n);
+            if(n==1){
+                return true;
+            }
+            n=helper(n);
+        }
+        return false;
+    }
+    public int helper(int n){
+        int residual = 0;
+        int division = n;
+        ArrayList<Integer> mylist = new ArrayList<Integer>();
+        while(division>=1){
+            residual = division % 10;
+            division = division/10;
+            mylist.add(residual);
+        }
+        int sum = 0;
+        for(int i=0; i<mylist.size(); i++){
+            mylist.set(i,mylist.get(i)*mylist.get(i));
+            sum+=mylist.get(i);
+        }
+        return sum;
+    }
+    
+    /* helper方法二
+        int s = 0;
+        while(n>0){
+            s+= (n%10)*(n%10);
+            n /= 10;
+        }
+        return s;
+    */
+}
