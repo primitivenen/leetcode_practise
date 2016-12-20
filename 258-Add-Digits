@@ -1,0 +1,25 @@
+public class Solution {
+    /* Approach 1: using recursion and loop
+    public int addDigits(int num) {
+        int s = helper(num);
+        while(s/10>0){
+            s=addDigits(s);
+        }
+        return s;
+    }
+    public int helper(int num){
+        int s=0;
+        while(num>0){
+            s += num%10;
+            num = num/10;
+        }
+        return s;
+    }  */
+    //Approach 2
+    public int addDigits(int num) {
+        while(num>=10){
+            num=num/10+num%10;
+        }
+        return num;
+    }
+}
