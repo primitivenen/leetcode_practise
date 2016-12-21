@@ -1,0 +1,7 @@
+//2的倍数是1 0000... ，一个1，n个0，n-1就是全部1，所以用&求与答案是0
+
+public class Solution {
+    public boolean isPowerOfTwo(int n) {
+        return n>0 && (n&(n-1))==0;
+    }
+}
