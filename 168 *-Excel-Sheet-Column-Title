@@ -1,0 +1,13 @@
+//n需要减1，因为10进制转换到26进制，10进制是0-9，26进制本来应该是0-25，变成1-26
+
+public class Solution {
+    public String convertToTitle(int n) {
+        StringBuilder str = new StringBuilder();
+        while(n>0){
+            char c=(char)((n-1)%26+'A');
+            n=(n-1)/26;
+            str.append(c);
+        }
+        return str.reverse().toString();
+    }
+}
