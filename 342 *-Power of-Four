@@ -1,0 +1,11 @@
+//注意：别忘了&周围的括号，否则会先算==
+
+public class Solution {
+    public boolean isPowerOfFour(int num) {
+        if(num<0){
+            return false;
+        }
+        int temp = num-1;
+        return (temp&num)==0 && temp%3==0;
+    }
+}
