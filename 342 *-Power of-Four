@@ -1,4 +1,5 @@
-//注意：别忘了&周围的括号，否则会先算==
+//注意：别忘了&周围的括号，否则会先算==.思想是如果一个数为4的倍数，那么这个数-1一定可以被3整除，可以用数学归纳法很容易得到证明。
+
 
 public class Solution {
     public boolean isPowerOfFour(int num) {
