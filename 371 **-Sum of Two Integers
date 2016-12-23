@@ -1,3 +1,5 @@
+//a^b是相加的结果，其中一个为1，一个为0，相加为1。a&b是进位结果，必须左移一位，最右边加0
+
 public class Solution {
     public int getSum(int a, int b) {
         while(b!=0){
