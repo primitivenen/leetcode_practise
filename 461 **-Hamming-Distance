@@ -1,0 +1,28 @@
+    //Approach 1: 先求异或，再对答案分别与1求&，如果结果不是0，说明有一个1
+    public int hammingDistance(int x, int y) {
+        int z=x^y;
+        int i = 1;
+        int count = 0;
+        while(i > 0)
+        {
+            if ((i & z) != 0)
+            count++;
+            
+            if(i >= z) break;
+            
+            i=(i<<1);
+            
+        }
+        return count;
+    }
+    
+    //Approach 2:道理不太明白
+  public int hammingWeight(int n) {  
+     if(n==0) return 0;  
+     int i=0;  
+     while(n!=0){  
+         n=n & (n-1);  
+         i++;  
+     }  
+     return i;  
+  }  
