@@ -1,0 +1,32 @@
+public class Solution {
+    /*
+    public int mySqrt(int x) {
+        int i;
+        for(i=1; i<=x/i; i++){
+        }
+        return i-1;
+    }
+    */
+    
+    public int mySqrt(int x) {
+        long left = 0, right = x;
+        while(left<=right){
+            long mid=(left+right)/2;
+            long t=mid*mid;
+            if(t==x){
+                return (int)mid;
+            }
+            /*
+            else if(t<x && (mid+1)*(mid+1)>x){
+                return (int)mid;
+            } */
+            else if(t<x){
+               left=mid+1;
+            } else{
+                right=mid-1;
+            }
+        }
+        return (int)right;
+    }
+    
+}
