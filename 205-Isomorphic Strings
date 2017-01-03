@@ -1,0 +1,27 @@
+//天娜，自己调对了
+
+public class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        HashMap<Character, Character> mymap = new HashMap<Character, Character>();
+        int lens=s.length();
+        int lent=t.length();
+        if(lens!=lent) return false;
+        for(int i=0; i<lens; i++){
+            char c =s.charAt(i);
+            char d =t.charAt(i);
+            if(!mymap.containsKey(c)){
+                for(Character m:mymap.keySet()){
+                    if(mymap.get(m)==d){
+                        return false;
+                    }
+                }
+                mymap.put(c, t.charAt(i));
+            } else{
+                if(mymap.get(c)!=t.charAt(i)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
