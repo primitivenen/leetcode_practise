@@ -1,0 +1,21 @@
+public class Solution {
+    public boolean isStrobogrammatic(String num) {
+        HashMap<Character, Character> mymap = new HashMap<Character, Character>();
+        mymap.put('0','0');
+        mymap.put('1','1');
+        mymap.put('8','8');
+        mymap.put('6','9');
+        mymap.put('9','6');
+        int l=0, r=num.length()-1;
+        while(l<=r){
+            if (!mymap.containsKey(num.charAt(l))) return false;
+            if(mymap.get(num.charAt(l))!=num.charAt(r)){
+                return false;
+            } else{
+                l++;
+                r--;
+            }
+        }
+        return true;
+    }
+}
