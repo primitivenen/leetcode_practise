@@ -1,0 +1,33 @@
+public class ValidWordAbbr {
+    HashMap<String,String> mymap;
+    public ValidWordAbbr(String[] dictionary) {
+        mymap = new HashMap<String, String>();
+        for(int i=0; i<dictionary.length; i++){
+            String str = newstring(dictionary[i]);
+            if(!mymap.containsKey(str)){
+                mymap.put(str,dictionary[i]);
+            }else{
+                if(!mymap.get(str).equals(dictionary[i]))         
+                //注意，这一步应该取反。因为需要比较原来的字符串是否相同，所以，需要HashMap，而不是HashSet
+                    mymap.put(str,"");
+            }
+        }
+    }
+
+    public boolean isUnique(String word) {
+        return !mymap.containsKey(newstring(word))||word.equals(mymap.get(newstring(word)));
+    }
+    public String newstring(String word){
+        if(word.length()<=2) return word;
+        String newstr = "";
+        newstr += word.charAt(0);
+        newstr+=Integer.toString(word.length()-2);
+        newstr += word.charAt(word.length()-1);
+        return newstr;
+    }
+}
+
+// Your ValidWordAbbr object will be instantiated and called as such:
+// ValidWordAbbr vwa = new ValidWordAbbr(dictionary);
+// vwa.isUnique("Word");
+// vwa.isUnique("anotherWord");
