@@ -1,0 +1,76 @@
+// 有些HashTable类型的解法，数组就很好了。下面的HashMap失败了
+
+public class Solution {
+    public String getHint(String secret, String guess) {
+        int bulls=0;
+        int[] nums1 = new int[10];
+        int[] nums2 = new int[10];
+        for(int i=0; i<secret.length(); i++){
+            char s = secret.charAt(i);
+            char g = guess.charAt(i);
+            if(s==g){
+                bulls++;
+            }else{
+                nums1[s-'0']++;
+                nums2[g-'0']++;
+            }
+        }
+        int cows=0;
+        for(int i=0; i<10; i++){
+            cows += Math.min(nums1[i],nums2[i]);
+        }
+        String res = bulls+"A"+cows+"B";
+        return res;
+    }
+}
+
+
+/*public class Solution {
+    public String getHint(String secret, String guess) {
+        int bull=0;
+        int cow=0;
+        HashMap<Character, ArrayList<Integer>> mymap = new HashMap<Character, ArrayList<Integer>>();
+        for(int i=0; i<secret.length(); i++){
+            char c = secret.charAt(i);
+            if(!mymap.containsKey(c)){
+                ArrayList<Integer> mylist = new ArrayList<Integer>();
+                mylist.add(i);
+                mymap.put(c,mylist);
+            }else{
+                ArrayList<Integer> temp = mymap.get(c);
+                temp.add(i);
+                mymap.put(c, temp);
+            }
+        }
+        for(int j=0; j<guess.length(); j++){
+            char c = guess.charAt(j);
+            if(!mymap.containsKey(c)){
+                continue;
+            }else{
+                if(mymap.get(c).indexOf(j)!=-1){
+                    bull++;
+                    ArrayList<Integer> temp = mymap.get(c);
+                    temp.remove(mymap.get(c).indexOf(j));
+                    mymap.put(c,temp);
+                }
+            }
+        }
+        for(int j=0; j<guess.length(); j++){
+            char c = guess.charAt(j);
+            if(!mymap.containsKey(c)){
+                continue;
+            }else{
+                if(mymap.get(c).indexOf(j)==-1){
+                    cow++;
+                    ArrayList<Integer> temp = mymap.get(c);
+                    if(temp==null){
+                        
+                    temp.remove(0);
+                    mymap.put(c,temp);
+                }
+            }
+        }
+        return Integer.toString(bull)+'A'+Integer.toString(cow)+'B';
+    }
+}*/
+
