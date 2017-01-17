@@ -1,0 +1,33 @@
+public class Solution {
+    public boolean verifyPreorder(int[] preorder) {
+        Stack<Integer> temp = new Stack<Integer>();
+        int low=Integer.MIN_VALUE;
+        for(int p:preorder){
+            if(p<low){
+                return false;
+            }
+            while(!temp.empty() && p>temp.peek()){
+                low=temp.pop();
+            }
+            temp.push(p);
+        }
+        return true;
+    }
+}
+
+public class Solution {
+    public boolean verifyPreorder(int[] preorder) {
+        int low=Integer.MIN_VALUE;
+        int i=-1;
+        for(int p:preorder){
+            if(p<low){
+                return false;
+            }
+            while(i>=0 && p>preorder[i]){
+                low=preorder[i--];
+            }
+            preorder[++i]=p;
+        }
+        return true;
+    }
+}
