@@ -1,3 +1,9 @@
+如果你传一个数进入一个函数
+如果这个数在函数里发生了变化
+你的外界调用这个函数的地方是得不到这个变化的
+如果你传一个数组
+你可以看到这个变化
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
