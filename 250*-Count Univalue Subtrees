@@ -3,6 +3,18 @@
 你的外界调用这个函数的地方是得不到这个变化的
 如果你传一个数组
 你可以看到这个变化
+void addone (int t) {t++;}
+if you call
+int x = 100;
+addone(x);
+print(x);
+what can you see?
+100
+but if
+int[] x = new int[] {100}
+void addone (int[] t) {t[0]++;}
+addone(x);
+print(x[0]);
 
 /**
  * Definition for a binary tree node.
