@@ -1,0 +1,57 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    /*
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root){
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        travel(result, root, 0);
+        return result;
+    }
+    public void travel(List<List<Integer>> result, TreeNode root, int level){
+        if(root==null){
+            return;
+        }
+        if(result.size()<=level){
+            List<Integer> newlevel = new LinkedList<>();
+            result.add(newlevel);
+        }
+        List<Integer> collection = result.get(level);
+        if(level%2==0) collection.add(root.val);
+        else collection.add(0, root.val);
+        travel(result, root.left, level+1);
+        travel(result, root.right, level+1);
+    }*/
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root){
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(root==null)  return result;
+        
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        boolean level=true;
+        int size=1;
+        while(!q.isEmpty()){
+            List<Integer> temp = new ArrayList<Integer>();
+            for(int i=0; i<size; i++){
+                TreeNode node = q.poll();
+                if(level){
+                    temp.add(node.val);
+                }else{
+                    temp.add(0, node.val);
+                }
+                if(node.left!=null) q.offer(node.left);
+                if(node.right!=null) q.offer(node.right);
+            }
+            result.add(temp);
+            size=q.size();
+            level=level? false: true;
+        }
+        return result;
+    }
+}
