@@ -1,0 +1,69 @@
+public class PhoneDirectory {
+    private Queue<Integer> mylist;
+    private HashSet<Integer> used;
+    private int num=0;
+
+    /** Initialize your data structure here
+        @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
+    public PhoneDirectory(int maxNumbers) {
+         mylist = new LinkedList<Integer>();
+         used = new HashSet<Integer>();
+         num=maxNumbers;
+         for(int i=0; i<maxNumbers; i++){
+             mylist.offer(i);
+         }
+    }
+    
+    /** Provide a number which is not assigned to anyone.
+        @return - Return an available number. Return -1 if none is available. */
+    public int get() {
+
+       if(mylist.size()==0){
+            return -1;
+        }
+        Integer temp = mylist.poll();
+/*        if(temp==null){
+            return -1;
+        }*/
+        used.add(temp);
+        return temp;
+    }
+    
+    /** Check if a number is available or not. */
+    public boolean check(int number) {
+/* too slow
+        Iterator<Integer> i = mylist.iterator();
+        while(i.hasNext()){
+            if(i.next()==number){
+                return true;
+            }
+        }
+        return false;*/
+        
+        if (number >= num || number < 0) {
+            return false;
+        }
+        return !used.contains(number);
+    }
+    
+    /** Recycle or release a number. */
+    public void release(int number) {
+        
+        if(used.contains(number)){
+            used.remove(number);
+            mylist.offer(number);
+        }
+        /*
+        if (used.remove(number)) {
+            mylist.offer(number);
+        }*/
+    }
+}
+
+/**
+ * Your PhoneDirectory object will be instantiated and called as such:
+ * PhoneDirectory obj = new PhoneDirectory(maxNumbers);
+ * int param_1 = obj.get();
+ * boolean param_2 = obj.check(number);
+ * obj.release(number);
+ */
