@@ -1,0 +1,23 @@
+public class Solution {
+    public int searchInsert(int[] nums, int target) {
+        if(nums==null||nums.length==0){
+            return -1;
+        }
+        return binarysearch(0, nums.length-1,nums,target);
+    }
+    public int binarysearch(int low, int high, int[] nums, int target){
+        if(low>high){
+            return low;
+        }
+        int mid=(high-low)/2+low;
+
+        if(nums[mid]==target){
+            return mid;
+        }
+        else if(nums[mid]>target){
+            return binarysearch(low,mid-1,nums,target);
+        } else{
+            return binarysearch(mid+1,high,nums,target);
+        }
+    }
+}
