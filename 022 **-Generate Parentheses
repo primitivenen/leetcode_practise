@@ -1,4 +1,4 @@
-//思路类似depth first search，为什么是嵌套的
+//思路类似depth first search，为什么是嵌套的？有return和没return的区别
 
 public class Solution {
     public List<String> generateParenthesis(int n) {
