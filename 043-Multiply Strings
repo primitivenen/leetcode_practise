@@ -1,0 +1,24 @@
+public class Solution {
+    public String multiply(String num1, String num2) {
+        int len1=num1.length(), len2=num2.length();
+        int[] product = new int[len1+len2];
+        for(int i=len1-1; i>=0; i--){
+            for(int j=len2-1; j>=0; j--){
+                product[i+j+1]+=Character.getNumericValue(num1.charAt(i))*Character.getNumericValue(num2.charAt(j));
+            }
+        }
+        int carry=0;
+        for(int i=product.length-1; i>=0; i--){
+            int temp=product[i]+carry;
+            carry=temp/10;
+            product[i]=temp%10;
+        }
+        StringBuilder str = new StringBuilder();
+        for(int num:product)
+            str.append(num);
+        while(str.length()!=0 && str.charAt(0)=='0'){
+            str.deleteCharAt(0);
+        }
+        return str.length()==0? "0":str.toString();
+    }
+}
