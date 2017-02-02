@@ -1,0 +1,14 @@
+~num:从0到32bit全部反转
+(Integer.highestOneBit(num)<<1)-1：把最右边的所有位变成1
+
+public class Solution {
+    public int findComplement(int num) {
+        return (Integer.highestOneBit(num)<<1)-1-num;
+    }
+}
+
+public class Solution {
+    public int findComplement(int num) {
+        return ~num & ((Integer.highestOneBit(num)<<1)-1);
+    }
+}
