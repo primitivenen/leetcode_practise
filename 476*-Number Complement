@@ -1,0 +1,7 @@
+//sum of one number and it's complement number will be 2^n-1(11.....111)
+
+public class Solution {
+    public int findComplement(int num) {
+        return (Integer.highestOneBit(num)<<1)-1-num;
+    }
+}
