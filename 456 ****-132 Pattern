@@ -1,0 +1,47 @@
+太tricky了
+方法一：把数组从后往前看，在处理当前数字的时候，要看看以前有没有比它小的，把比它小的数字保存下来。保证s3在数组里永远有比s3小的数字
+
+public class Solution {
+    public boolean find132pattern(int[] nums) {
+        Stack<Integer> mystack = new Stack<Integer>();
+        int s3 = Integer.MIN_VALUE;
+        for(int i=nums.length-1; i>=0; i--){
+            if(nums[i] <s3) return true;      //退出碰到的就是s1
+            while(!mystack.isEmpty() && nums[i]>mystack.peek()){
+                s3 = mystack.peek();  //s3出现的位置比i大
+                mystack.pop();
+            }
+            mystack.add(nums[i]);     //nums[i]就是s2
+        }
+        return false;
+    }
+
+/*
+    public class Pair{
+        public int min;
+        public int max;
+        public Pair(int mn, int mx){
+            min=mn;
+            max=mx;
+        }
+    }
+    public boolean find132pattern(int[] nums) {
+        Stack<Pair> mystack = new Stack<Pair>();
+        for(int n:nums){
+            if(mystack.isEmpty() || n < mystack.peek().min){
+                mystack.push(new Pair(n,n));
+            }
+            else if(n > mystack.peek().min){
+                Pair last = mystack.pop();
+                if(n < last.max)    return true;
+                else{
+                    last.max=n;
+                    while(!mystack.isEmpty() && n>=mystack.peek().max) mystack.pop();
+                    if(!mystack.isEmpty() && mystack.peek().min < n) return true;
+                    mystack.push(last);
+                }
+            }
+        }
+        return false;
+    }*/
+}
