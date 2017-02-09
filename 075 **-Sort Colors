@@ -1,0 +1,25 @@
+public class Solution {
+    public void sortColors(int[] nums) {
+        if(nums==null||nums.length<2){
+            return;
+        }
+        int low=0, high=nums.length-1;
+        for(int i=low; i<=high; ){
+            if(nums[i]==0){
+                int temp = nums[i];
+                nums[i]=nums[low];
+                nums[low]=temp;
+                i++;
+                low++;//i是当前的位置,low是第一个位置，high是不是排好2的那一小段最近的数字，可能是任何东西。
+            } else if(nums[i]==2){
+                int temp = nums[i];
+                nums[i] = nums[high];
+                nums[high] = temp;
+                high--;//换过来的可能是任何东西
+            }else{
+                i++;
+            }
+            
+        }
+    }
+}
