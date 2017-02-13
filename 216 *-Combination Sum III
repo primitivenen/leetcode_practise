@@ -1,0 +1,18 @@
+public class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        helper(ans, new ArrayList<Integer>(), k, 1, n);
+        return ans;
+    }
+    public void helper(List<List<Integer>> ans, List<Integer> templist, int k, int start, int n){
+        if(templist.size()==k && n==0){
+            ans.add(new ArrayList<Integer>(templist));
+            return;
+        }
+        for(int i=start; i<=9; i++){
+            templist.add(i);
+            helper(ans,templist,k,i+1,n-i);
+            templist.remove(templist.size()-1);
+        }
+    }
+}
