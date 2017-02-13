@@ -1,0 +1,28 @@
+这道题还要考虑的是visited情况，前一个元素就算跟当前元素相同，如果visited==true也没关系。
+但是如果前面元素跟当前元素相同还没被visited，那么就要做去重处理了。
+
+public class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        if(nums==null || nums.length==0)  return ans;
+        boolean[] used = new boolean[nums.length];
+        Arrays.sort(nums);
+        helper(ans, new ArrayList<Integer>(), used, nums);
+        return ans;
+    }
+    public void helper(List<List<Integer>> ans, List<Integer> templist, boolean[] used, int[] nums){
+        if(templist.size() == nums.length){
+            ans.add(new ArrayList<Integer>(templist));
+            return;
+        }
+        for(int i=0; i<nums.length; i++){
+            if(used[i])   continue;
+            if(i>0 && nums[i-1]==nums[i] && !used[i-1])    continue;
+            used[i]=true;
+            templist.add(nums[i]);
+            helper(ans, templist, used, nums);
+            used[i]=false;
+            templist.remove(templist.size()-1);
+        }
+    }
+}
