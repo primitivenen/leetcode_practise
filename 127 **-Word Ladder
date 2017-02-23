@@ -1,0 +1,28 @@
+public class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Queue<String> q = new LinkedList<>();
+        q.offer(beginWord);
+        Set<String> s = new HashSet<>(); 
+        for(String w:wordList){
+            s.add(w);
+        }
+        for(int i=1; !q.isEmpty(); i++){
+            for(int size=q.size(); size>0; size--){  //就是执行size次啊，因为不是size-1
+                String w=q.poll();
+                if(w.equals(endWord)) return i;  //列出所有可能，一有匹配就退出，所以后面其他的就不管了
+                for(int j=0; j<w.length(); j++){
+                    char[] c=w.toCharArray();
+                    for(char k='a'; k<='z'; k++){
+                        c[j]=k;
+                        String next=new String(c);
+                        if(s.contains(next)){
+                            q.offer(next);
+                            s.remove(next);
+                        }  
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+}
