@@ -19,3 +19,25 @@ public class Solution {
         return min;
     }
 }
+
+
+//2nd round
+public class Solution {
+    public int shortestDistance(String[] words, String word1, String word2) {
+        int dist=0, mindist=Integer.MAX_VALUE;
+        int temp1=Integer.MIN_VALUE, temp2=Integer.MIN_VALUE;
+        for(int i=0; i<words.length; i++){
+            if(words[i].equals(word1)){
+                temp1=i;
+            }
+            if(words[i].equals(word2)){
+                temp2=i;
+            }
+            if(temp1 != Integer.MIN_VALUE && temp2 != Integer.MIN_VALUE){
+                dist=Math.abs(temp1-temp2);
+                mindist=Math.min(mindist, dist);
+            }
+        }
+        return mindist;
+    }
+}
