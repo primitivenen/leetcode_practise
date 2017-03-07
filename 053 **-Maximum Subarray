@@ -12,3 +12,25 @@ public class Solution {
         return max;
     }
 }
+
+//Approach 2
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        int maxsofar=nums[0],maxendhere=nums[0];
+        for(int i=1; i<nums.length; i++){
+            maxendhere=Math.max(nums[i], maxendhere+nums[i]);
+            maxsofar=Math.max(maxsofar, maxendhere);
+        }
+        return maxsofar;
+    }
+}
+
+    public int maxSubArray(int[] nums) {
+        int sum = 0, smax = Integer.MIN_VALUE;
+        for (int num : nums) {
+            sum += num;
+            if (sum > smax) smax = sum;
+            if (sum < 0) sum = 0;
+        }
+        return smax;
+    }
