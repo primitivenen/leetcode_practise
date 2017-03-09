@@ -26,3 +26,29 @@ public class Solution {
         return ans;
     }
 }
+
+
+public class Solution {
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> mymap = new HashMap<>();
+        for(int num:nums){
+            mymap.put(num,mymap.getOrDefault(num,0)+1);
+        }
+        
+        TreeMap<Integer, List<Integer>> map = new TreeMap<>();
+        for(Integer n:mymap.keySet()){
+            int freq=mymap.get(n);
+            if(!map.containsKey(freq)){
+                map.put(freq, new LinkedList<>());
+            }
+            map.get(freq).add(n);
+        }
+        
+        List<Integer> ans = new LinkedList<>();
+        while(ans.size()<k){
+            Map.Entry<Integer, List<Integer>> entry = map.pollLastEntry();
+            ans.addAll(entry.getValue());
+        }
+        return ans;
+    }
+}
