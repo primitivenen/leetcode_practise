@@ -62,3 +62,30 @@ public class Solution {
         return min;
     }
 }*/
+
+public class Solution {
+    public int shortestWordDistance(String[] words, String word1, String word2) {
+        int mindist=Integer.MAX_VALUE;
+        boolean flag=word1.equals(word2);
+        int temp1=Integer.MIN_VALUE;
+        int temp2=Integer.MIN_VALUE;
+        for(int i=0; i<words.length; i++){
+            
+            if(words[i].equals(word1)){
+                if(flag){
+                    temp2=temp1;
+                    temp1=i;
+                }else{
+                    temp1=i;
+                }
+            }
+            else if(words[i].equals(word2)){
+                temp2=i;
+            }
+            if(temp1 != Integer.MIN_VALUE && temp2 != Integer.MIN_VALUE){
+                mindist=Math.min(mindist, Math.abs(temp1-temp2));
+            }
+        }
+        return mindist;
+    }
+}
