@@ -1,0 +1,55 @@
+public class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        List<String> res = new ArrayList<String>();
+        if(nums.length==1){
+            res.add(nums[0]+"");
+            return res;
+        } 
+        
+        for(int i=0; i<nums.length; i++){
+            int temp=nums[i];
+            while(i<nums.length-1 && (nums[i+1]-nums[i])==1){
+                i++;
+            }
+            if(temp!=nums[i]){
+                res.add(temp+"->"+nums[i]);
+            }else{
+                res.add(temp+"");
+            }
+        }
+        return res;
+    }
+}
+
+//2ND ROUND
+public class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        List<String> ans = new LinkedList<>();
+        if(nums==null || nums.length==0) 
+            return ans;
+        if(nums.length==1){
+            ans.add(Integer.toString(nums[0]));
+            return ans;
+        }
+        
+        int start=nums[0];
+        for(int i=1; i<nums.length; i++){
+            if(nums[i]==nums[i-1]+1){
+                continue;
+            }else{
+                if(start!=nums[i-1]){
+                    ans.add(start+"->"+nums[i-1]);
+                }else{
+                    ans.add(Integer.toString(nums[i-1]));
+                }
+                start=nums[i];
+            }
+        }
+        if(start!=nums[nums.length-1]){
+            ans.add(start+"->"+nums[nums.length-1]);
+        }else{
+            ans.add(Integer.toString(nums[nums.length-1]));
+        }
+        return ans;
+    }
+}
