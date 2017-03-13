@@ -1,0 +1,37 @@
+public class Solution {
+    public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+        List<String> ans = new LinkedList<>();
+        if(nums==null || nums.length==0){
+            if(lower!=upper){
+                ans.add(lower+"->"+upper);
+            }else{
+                ans.add(lower+"");
+            }
+            return ans;
+        }
+        for(int i=0; i<nums.length; i++){
+            // if num is MIN, num - 1 will be MAX
+            if(nums[i] == Integer.MIN_VALUE) {
+                lower = nums[i] + 1;
+                continue;
+            }
+            if(lower==nums[i]-1){
+                ans.add(lower+"");
+            }else if(lower<nums[i]-1){
+                ans.add(lower+"->"+(nums[i]-1));
+            }
+            if(nums[i]==Integer.MAX_VALUE)  return ans;
+            lower=nums[i]+1;
+        }
+        // if the last num is MAX, num + 1 will be MIN
+        if(lower == Integer.MIN_VALUE) return ans;
+        
+        if(lower==upper){
+            ans.add(lower+"");
+        }else if(lower<upper){
+            ans.add(lower+"->"+upper);
+        }
+        
+        return ans;
+    }
+}
