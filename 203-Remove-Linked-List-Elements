@@ -22,3 +22,24 @@ public class Solution {
         return list.next;  //指向head，不能返回head，因为head有可能被删除
     }
 }
+
+
+public class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode dummy = new ListNode(Integer.MAX_VALUE);
+        dummy.next=head;
+        ListNode prev=dummy;
+        ListNode p=dummy.next;
+        while(p!=null){
+            ListNode temp = p.next;
+            if(p.val==val){
+                prev.next=temp;
+                p=temp;
+            }else{
+                prev=p;
+                p=temp;
+            }
+        }
+        return dummy.next;
+    }
+}
