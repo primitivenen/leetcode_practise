@@ -53,3 +53,19 @@ public class Solution {
     	return pseudoHead.next;
     }
 }
+
+public class Solution {
+    public RandomListNode copyRandomList(RandomListNode head) {
+        RandomListNode p = head;
+        Map<RandomListNode, RandomListNode> mymap = new HashMap<>();
+        while(p!=null){
+            mymap.put(p, new RandomListNode(p.label));
+            p=p.next;
+        }
+        for(RandomListNode r:mymap.keySet()){
+            mymap.get(r).next=mymap.get(r.next);
+            mymap.get(r).random=mymap.get(r.random);
+        }
+        return mymap.get(head);
+    }
+}
