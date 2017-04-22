@@ -41,3 +41,49 @@ public class Solution {
         return false;
     }
 }
+
+//Approach 2
+
+public class Solution {
+    public boolean isValid(String s) {
+        char[] str = s.toCharArray();
+        Stack<Character> mystack = new Stack<Character>();
+        for(int i=0; i<str.length; i++){
+            char ch=str[i];
+            if(ch=='(' || ch=='{' || ch=='[')
+                mystack.push(str[i]);
+            else if(ch==')' || ch=='}' || ch==']'){
+                if(mystack.empty()) return false;
+                if(!mystack.empty()){
+                    char ch2=mystack.pop();
+                    if(ch==')' && ch2!='('){
+                        return false;
+                    } else  if(ch=='}' && ch2!='{'){
+                        return false;
+                    } else if(ch==']' && ch2!='['){
+                        return false;
+                    } 
+                }
+            }
+        }
+        if(!mystack.empty()) return false;
+        return true;
+    }
+}
+
+//Approach 3
+
+public boolean isValid(String s) {
+	Stack<Character> stack = new Stack<Character>();
+	for (char c : s.toCharArray()) {
+		if (c == '(')
+			stack.push(')');
+		else if (c == '{')
+			stack.push('}');
+		else if (c == '[')
+			stack.push(']');
+		else if (stack.isEmpty() || stack.pop() != c)
+			return false;
+	}
+	return stack.isEmpty();
+}
