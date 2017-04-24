@@ -1,0 +1,16 @@
+public class Solution {
+    public int[] nextGreaterElement(int[] findNums, int[] nums) {
+        Map<Integer, Integer> mymap = new HashMap<Integer, Integer>();
+        Stack<Integer> mystack = new Stack<Integer>();
+        for(int num:nums){
+            while(!mystack.isEmpty() && mystack.peek()<num){
+                mymap.put(mystack.pop(),num);
+            }
+            mystack.push(num);
+        }
+        for (int i = 0; i < findNums.length; i++){
+            findNums[i] = mymap.getOrDefault(findNums[i], -1);
+        }
+        return findNums;
+    }
+}
