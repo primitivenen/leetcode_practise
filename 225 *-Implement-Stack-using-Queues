@@ -64,3 +64,44 @@ class MyStack {
         return myqueue.isEmpty() && reverse_queue.isEmpty();
     }
 }
+
+//Approach 2
+public class MyStack {
+    Queue<Integer> mylist;
+    /** Initialize your data structure here. */
+    public MyStack() {
+        mylist = new LinkedList<Integer>();
+    }
+    
+    /** Push element x onto stack. */
+    public void push(int x) {
+        mylist.add(x);
+        for(int i=0; i<mylist.size()-1; i++){
+            mylist.add(mylist.poll());
+        }
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        return mylist.poll();
+    }
+    
+    /** Get the top element. */
+    public int top() {
+        return mylist.peek();
+    }
+    
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return mylist.isEmpty();
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
