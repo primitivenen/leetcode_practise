@@ -34,3 +34,18 @@ public class Solution {
         return result;
     }
 }
+
+//Approach 2
+public class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res = new LinkedList<Integer>();
+        travel(res, root);
+        return res;
+    }
+    public void travel(List<Integer> res, TreeNode cur){
+        if(cur==null) return;
+        if(cur!=null)     res.add(cur.val);
+        travel(res, cur.left);
+        travel(res, cur.right);
+    }
+}
