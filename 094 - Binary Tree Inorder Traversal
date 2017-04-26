@@ -24,3 +24,19 @@ public class Solution {
         return result;
     }
 }
+
+//approach 2
+public class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new LinkedList<Integer>();
+        if(root==null)  return res;
+        travel(root, res);
+        return res;
+    }
+    public void travel(TreeNode node, List<Integer> res){
+        if(node==null) return;
+        if(node.left!=null) travel(node.left, res);
+        res.add(node.val);
+        if(node.right!=null) travel(node.right, res);
+    }
+}
