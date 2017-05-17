@@ -30,9 +30,9 @@ public class Solution {
                     if(!s.substring(0, i).equals(s.substring(j*i, j*i+i))){
                         break;
                     }
-                    if(j==m){
-                        return true;
-                    }
+                }
+                if(j==m){
+                    return true;
                 }
             }
         }
