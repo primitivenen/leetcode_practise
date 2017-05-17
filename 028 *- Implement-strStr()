@@ -50,3 +50,32 @@ public class Solution {
         return -1;
     }
 }
+
+//2nd round
+public class Solution {
+    /*
+    public int strStr(String haystack, String needle) {
+        return haystack.indexOf(needle);
+    }*/
+    public int strStr(String haystack, String needle) {
+        int lenh=haystack.length();
+        int lenn=needle.length();
+        if(lenh==0 && lenn ==0)  return 0;
+        if(lenh<lenn)  return -1;
+        for(int i=0; i<lenh; i++){
+            int j;
+            for(j=0; j<lenn; j++){
+                if(i+j==lenh){
+                    return -1;
+                }
+                if(i+j<lenh && haystack.charAt(i+j)!=needle.charAt(j)){
+                    break;
+                }
+            }
+            if(j==lenn){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
