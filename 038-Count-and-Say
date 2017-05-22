@@ -25,3 +25,30 @@ public class Solution{
         return newnum.toString();
     }
 }
+
+//2nd round
+public class Solution {
+    public String countAndSay(int n) {
+        String str="1";
+        for(int i=1; i<n; i++){
+            str=helper(str);
+        }
+        return str;
+    }
+    public String helper(String orig){
+        StringBuilder ans = new StringBuilder();
+        int i=0;
+        while(i<orig.length()){
+            char c=orig.charAt(i);
+            int count=1;
+            while(i<orig.length()-1 && c==orig.charAt(i+1)){
+                count++;
+                i++;
+                c=orig.charAt(i);
+            }
+            ans.append(count+""+c);
+            i++;
+        }
+        return ans.toString();
+    }
+}
