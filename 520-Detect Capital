@@ -1,0 +1,60 @@
+public class Solution {
+    public boolean detectCapitalUse(String word) {
+        int i=0;
+        boolean Allcapital=true;
+        boolean Otherlowercase=true;
+        boolean Alllowercase=true;
+        while(i<word.length()){
+            char c=word.charAt(i);
+            if(i==0){
+                if(isCapital(c)){
+                    Alllowercase=false;
+                    i++;
+                    while(i<word.length()){
+                        c=word.charAt(i);
+                        if(!isCapital(c)){
+                            Allcapital=false;
+                        }
+                        if(!isLowerCase(c)){
+                            Otherlowercase=false;
+                        }
+                        i++;
+                    }
+                }else{
+                    Allcapital=false;
+                    Otherlowercase=false;
+                    i++;
+                    while(i<word.length()){
+                        c=word.charAt(i);
+                        if(!isLowerCase(c)){
+                            Alllowercase=false;
+                        }
+                        i++;
+                    }                    
+                }
+            }
+        }
+        return Allcapital||Otherlowercase||Alllowercase;
+    }
+    public boolean isCapital(char c){
+        if( c-'A'>=0 && c-'Z'<=0){
+            return true;
+        }
+        return false;
+    }
+    public boolean isLowerCase(char c){
+        if( c-'a'>=0 && c-'z'<=0){
+            return true;
+        }
+        return false;
+    }
+}
+
+//方法二
+public class Solution {
+    public boolean detectCapitalUse(String word) {
+        int cnt = 0;
+        for(char c: word.toCharArray()) if('Z' - c >= 0) cnt++;
+        return ((cnt==0 || cnt==word.length()) || (cnt==1 && 'Z' - word.charAt(0)>=0));
+    }
+}
