@@ -34,3 +34,45 @@ which is the same as by concantenating two [a ... z]   */
         return list;
     }
 }
+
+//2nd Round
+public class Solution {
+    public List<List<String>> groupStrings(String[] strings) {
+        HashMap<String, ArrayList<String>> mytable = new HashMap<>();
+        for(int i=0; i<strings.length; i++){
+            String temp = strings[i];
+            if(temp.length()==0){
+                if(!mytable.containsKey("a")){
+                    ArrayList<String> ss = new ArrayList<String>();
+                    ss.add(temp);
+                    mytable.put("a", ss);
+                }else{
+                    ArrayList<String> ss = mytable.get("a");
+                    ss.add(temp);
+                    mytable.put("a", ss);
+                }
+            }
+            StringBuilder str=new StringBuilder();
+            for(int j=0; j<temp.length()-1; j++){
+                char c=temp.charAt(j);
+                char c2=temp.charAt(j+1);
+                str.append((c2-c+26)%26);
+            }
+            String s=str.toString();
+            if(mytable.containsKey(s)){
+                ArrayList<String> ss = mytable.get(s);
+                ss.add(temp);
+                mytable.put(s, ss);
+            }else{
+                ArrayList<String> ss = new ArrayList<String>();
+                ss.add(temp);
+                mytable.put(s, ss);
+            }
+        }
+        List<List<String>> ans = new ArrayList<List<String>>();
+        for(String s:mytable.keySet()){
+            ans.add(mytable.get(s));
+        }
+        return ans;
+    }
+}
