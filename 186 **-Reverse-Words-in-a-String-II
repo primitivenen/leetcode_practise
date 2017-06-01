@@ -36,3 +36,27 @@ public class Solution {
         }
     }
 }
+//3rd approach
+
+public class Solution {
+    public void reverseWords(char[] s) {
+        swap(0, s.length-1, s);
+        int start=0;
+        for(int i=0; i<s.length; i++){
+            if(s[i]==' '){
+                swap(start, i-1, s);
+                start=i+1;
+            }
+        }
+        swap(start,s.length-1,s);
+    }
+    public void swap(int i, int j, char[] s){
+        while(i<j){
+            char temp=s[i];
+            s[i]=s[j];
+            s[j]=temp;
+            i++;
+            j--;
+        }
+    }
+}
