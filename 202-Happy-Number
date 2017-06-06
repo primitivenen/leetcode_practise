@@ -36,3 +36,29 @@ public class Solution {
         return s;
     */
 }
+
+//2nd round
+
+public class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> temp = new HashSet<>();
+        while(temp.add(n)){
+            int t=ssq(n);
+            if(t==1){
+                return true;
+            }
+            else
+                n=t;
+        }
+        return false;
+    }
+    public int ssq(int n){
+        int product=0;
+        while(n/10!=0){
+            product+=(n%10)*(n%10);
+            n=n/10;
+        }
+        product+=n*n;
+        return product;
+    }
+}
