@@ -44,3 +44,34 @@ public class Solution {
         return result;
     }
 }
+
+//2nd round
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ans = new ArrayList<Integer>();
+        if(root==null) return ans;
+        Queue<TreeNode> myqueue = new LinkedList<>();
+        myqueue.offer(root);
+        TreeNode temp = null;
+        while(!myqueue.isEmpty()){
+            int size=myqueue.size();
+            for(int i=0; i<size; i++){
+                temp = myqueue.poll();
+                if(temp.left!=null) myqueue.offer(temp.left);
+                if(temp.right!=null) myqueue.offer(temp.right);
+
+            }
+            ans.add(temp.val);
+        }
+        return ans;
+    }
+}
