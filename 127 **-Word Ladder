@@ -26,3 +26,45 @@ public class Solution {
         return 0;
     }
 }
+
+//2nd round
+public class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        
+        HashSet<String> hs = new HashSet<>();
+        for(String s:wordList){
+            hs.add(s);
+        }
+        if(!hs.contains(endWord))
+            return 0;
+        Queue<String> myset = new LinkedList<>();
+        myset.offer(beginWord);
+        
+        HashSet<String> visited = new HashSet<>();
+        visited.add(beginWord);
+        
+        int len=1;
+        while(!myset.isEmpty()){
+            int size=myset.size();
+            for(int i=0; i<size; i++){
+                String str=myset.poll();
+                
+                for(int j=0; j<str.length(); j++){
+                    for(char c='a'; c<='z'; c++){
+                        StringBuilder sb = new StringBuilder(str);
+                        sb.setCharAt(j,c);
+                        String str2=sb.toString();
+                        if(str2.equals(endWord))
+                            return len+1;
+                        if(!visited.contains(str2) && hs.contains(str2)){
+                            myset.offer(str2);
+                            visited.add(str2);
+                        }
+                    }
+                }
+            }
+            len++;
+        }
+        return 0;
+    }
+}
