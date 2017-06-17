@@ -29,3 +29,43 @@ public class TwoSum {
 // TwoSum twoSum = new TwoSum();
 // twoSum.add(number);
 // twoSum.find(value);
+
+
+//2nd round
+public class TwoSum {
+    HashMap<Integer, Integer> myset;
+
+    /** Initialize your data structure here. */
+    public TwoSum() {
+        myset = new HashMap<>();
+    }
+    
+    /** Add the number to an internal data structure.. */
+    public void add(int number) {
+        if(myset.containsKey(number)){
+            myset.put(number, 2);
+        }else{
+            myset.put(number, 1);
+        }
+    }
+    
+    /** Find if there exists any pair of numbers which sum is equal to the value. */
+    public boolean find(int value) {
+        for(Integer i:myset.keySet()){
+            int res = value-i;
+            if(myset.containsKey(res) && res!=i) {
+                return true;
+            }else if(myset.containsKey(res) && res==i && myset.get(i)==2){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+/**
+ * Your TwoSum object will be instantiated and called as such:
+ * TwoSum obj = new TwoSum();
+ * obj.add(number);
+ * boolean param_2 = obj.find(value);
+ */
