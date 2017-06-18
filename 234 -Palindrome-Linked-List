@@ -91,3 +91,44 @@ public class Solution {
         return prev;
     }
 }
+
+//3rd round
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow=head, fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        ListNode newnode=reverse(slow);
+        ListNode newslow=head;
+        while(newnode!=null && newslow!=null){
+            if(newnode.val!=newslow.val)
+                return false;
+            newnode=newnode.next;
+            newslow=newslow.next;
+        }
+        return true;
+    }
+    public ListNode reverse(ListNode head){
+        if(head==null || head.next==null) return head;
+        ListNode prev=null;
+        ListNode curr=head;
+        ListNode next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+}
