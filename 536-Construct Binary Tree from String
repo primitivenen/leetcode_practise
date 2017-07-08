@@ -1,0 +1,26 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode str2tree(String s) {
+        if(s==null ||s.length()==0)  return null;
+        int firstparen=s.indexOf("(");
+        int val = firstparen==-1? Integer.parseInt(s):Integer.parseInt(s.substring(0, firstparen));
+        TreeNode cur = new TreeNode(val);
+        if(firstparen==-1)  return cur;
+        int start = firstparen, leftparencount=0;
+        for(int i=start; i<s.length(); i++){
+            if(s.charAt(i)=='(')  leftparencount++;
+            else if (s.charAt(i) == ')') leftparencount--;
+            if(leftparencount==0 && start==firstparen)  {cur.left=str2tree(s.substring(start+1,i)); start = i+1;}
+            else if (leftparencount == 0) cur.right = str2tree(s.substring(start+1,i));
+        }
+        return cur;
+    }
+}
