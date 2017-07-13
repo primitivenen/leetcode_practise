@@ -23,3 +23,32 @@ public class Solution {
         inorder(root.right);
     }
 }
+
+//2nd round
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int getMinimumDifference(TreeNode root) {
+        if(root==null)  return 0;
+        List<Integer> temp = new ArrayList<>();
+        inorder(root, temp);
+        int diff = Integer.MAX_VALUE;
+        for(int i=0; i<temp.size()-1; i++){
+            diff=Math.min(diff, temp.get(i+1)-temp.get(i));
+        }
+        return diff;
+    }
+    public void inorder(TreeNode root, List<Integer> temp){
+        if(root==null) return;
+        inorder(root.left, temp);
+        temp.add(root.val);
+        inorder(root.right, temp);
+    }
+}
