@@ -1,4 +1,4 @@
-    public ListNode plusOne(ListNode head) {
+public ListNode plusOne(ListNode head) {
         ListNode dmy = new ListNode(0), lastNot9 = dmy;
         dmy.next = head;
         for (ListNode n = head; n != null; n = n.next) {
@@ -10,3 +10,27 @@
         }
         return dmy.val == 1 ? dmy : head;
     }
+
+//2nd round
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode plusOne(ListNode head) {
+        if(head==null) return new ListNode(1);
+        ListNode res= new ListNode(1);
+        res.next=head;
+        return helper(head)>0?res:head;
+    }
+    public int helper(ListNode head){
+        int sum=head.val+(head.next==null?1:helper(head.next));
+        head.val=sum%10;
+        return sum/10;
+    }
+}
