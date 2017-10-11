@@ -1,0 +1,43 @@
+public class Solution {
+    public List<String> letterCombinations(String digits) {
+        LinkedList<String> ans = new LinkedList<String>();
+        if(digits == null || digits.length() == 0) return ans;
+        
+        String[] mapping = new String[]{"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        ans.add("");
+        
+        for(int i=0; i<digits.length(); i++){
+            int x=Character.getNumericValue(digits.charAt(i));
+            while(ans.peek().length()==i){
+                String t=ans.remove();
+                for(char s:mapping[x].toCharArray()){
+                    ans.add(t+s);
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+//2nd round
+
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> res=new ArrayList<String>();
+        if (digits == null || digits.length() == 0) return res;
+        String[] letters = new String[]{"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        helper(letters, "", digits, 0, res);
+        return res;
+    }
+    public void helper(String[] letters, String temp, String digits, int n, List<String> res){
+        if(n>=digits.length()){
+            res.add(temp);
+            return;
+        }
+        char c=digits.charAt(n);
+        int num=c-'0';
+        for(int i=0; i<letters[num].length(); i++){
+            helper(letters, temp+letters[num].charAt(i), digits, n+1,res);
+        }
+    }
+}
