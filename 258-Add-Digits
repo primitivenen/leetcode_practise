@@ -23,3 +23,9 @@ public class Solution {
         return num;
     }
 }
+
+//Approach 3
+    public int addDigits(int num) {
+        // write your code here
+        return 1+(num-1)%9;
+    }
