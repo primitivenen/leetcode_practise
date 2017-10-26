@@ -1,0 +1,29 @@
+public class Solution {
+    /*
+     * @param words: A list of words
+     * @return: Return how many different rotate words
+     */
+    public int countRotateWords(List<String> words) {
+        // Write your code here
+        int count=0;
+        Set<String> set=new HashSet<>();
+        for(int i=0; i<words.size(); i++){
+            String temp=words.get(i);
+            if(!set.contains(temp)){
+                count++;
+            
+                while(!set.contains(temp)){
+                    set.add(temp);
+                    temp=change(temp);
+                }
+            }
+        }
+        return count;
+    }
+    
+    public String change(String word){
+        String str1=word.substring(0, word.length()-1);
+        String str2=word.substring(word.length()-1);
+        return str2+str1;
+    }
+}
