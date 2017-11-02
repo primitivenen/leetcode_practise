@@ -1,0 +1,25 @@
+public class Solution {
+    /*
+     * @param nums: Given an integers array A
+     * @return: A long long array B and B[i]= A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1]
+     */
+    public List<Long> productExcludeItself(List<Integer> nums) {
+        // write your code here
+        List<Long> res = new ArrayList<Long>();
+        if(nums==null || nums.size()<1)  return res;
+        long[] lp = new long[nums.size()];
+        long[] rp = new long[nums.size()];
+        lp[0]=1; 
+        rp[nums.size()-1]=1;
+        for(int i=1; i<nums.size(); i++){
+            lp[i]=lp[i-1]*nums.get(i-1);
+        }
+        for(int i=nums.size()-2; i>=0; i--){
+            rp[i]=rp[i+1]*nums.get(i+1);
+        }
+        for(int i=0; i<nums.size(); i++){
+            res.add(lp[i]*rp[i]);
+        }
+        return res;
+    }
+}
