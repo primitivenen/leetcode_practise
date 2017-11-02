@@ -1,0 +1,20 @@
+public class Solution {
+    /*
+     * @param digits: a number represented as an array of digits
+     * @return: the result
+     */
+    public int[] plusOne(int[] digits) {
+        // write your code here
+        int n=digits.length;
+        for(int i=n-1; i>=0; i--){
+            if(digits[i]<9){
+                digits[i]++;
+                return digits;
+            }
+            digits[i]=0;
+        }
+        int[] ans = new int[n+1];
+        ans[0]=1;
+        return ans;
+    }
+}
