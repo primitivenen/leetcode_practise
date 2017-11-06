@@ -1,0 +1,18 @@
+public class Solution {
+    /*
+     * @param s: a string
+     * @return: it's index
+     */
+    public int firstUniqChar(String s) {
+        // write your code here
+        int[] alph = new int[256];
+        for(int i=0; i<s.length(); i++){
+            alph[s.charAt(i)]++;
+        }
+        for(int i=0; i<s.length(); i++){
+            if(alph[s.charAt(i)]==1)
+                return i;
+        }
+        return -1;
+    }
+}
