@@ -1,5 +1,7 @@
+
 这道题还要考虑的是visited情况，前一个元素就算跟当前元素相同，如果visited==true也没关系。
 但是如果前面元素跟当前元素相同还没被visited，那么就要做去重处理了。
+而且!used[i-1]和used[i-1]是一样的，只要去掉一个就可以
 
 public class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
