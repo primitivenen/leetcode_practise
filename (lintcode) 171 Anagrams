@@ -1,0 +1,30 @@
+public class Solution {
+    /*
+     * @param strs: A list of strings
+     * @return: A list of strings
+     */
+    public List<String> anagrams(String[] strs) {
+        // write your code here
+        List<String> res = new ArrayList<String>();
+        if(strs==null || strs.length==0) return res;
+        HashMap<String, List<String>> map = new HashMap<String, List<String>>();
+        for(int i=0; i<strs.length; i++){
+            String str=strs[i];
+            char[] temp=str.toCharArray();
+            Arrays.sort(temp);
+            String str_sorted=new String(temp);
+            if(!map.containsKey(str_sorted)){
+                List<String> tt=new ArrayList<>();
+                tt.add(str);
+                map.put(str_sorted, tt);
+            }else{
+                map.get(str_sorted).add(str);
+            }
+        }
+        for(Map.Entry<String, List<String>> entry:map.entrySet()){
+            if(entry.getValue().size()>1)
+                res.addAll(entry.getValue());
+        }
+        return res;
+    }
+}
