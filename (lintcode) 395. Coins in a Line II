@@ -1,0 +1,23 @@
+public class Solution {
+    /*
+     * @param values: a vector of integers
+     * @return: a boolean which equals to true if the first player will win
+     */
+    public boolean firstWillWin(int[] values) {
+        // write your code here
+        if(values.length<=2) return true;
+        int n = values.length;
+        int[] dp = new int[n+1];
+        dp[n-1]=values[n-1];
+        dp[n-2]=values[n-1]+values[n-2];
+        dp[n-3]=values[n-3]+values[n-2];
+        for(int i=n-4; i>=0; i--){
+            dp[i]=Math.max(values[i]+Math.min(dp[i+2], dp[i+3]), 
+                    values[i]+values[i+1]+Math.min(dp[i+3],dp[i+4]));
+        }
+        int sum=0;
+        for(Integer num:values)
+            sum+=num;
+        return sum-dp[0]<dp[0];
+    }
+}
