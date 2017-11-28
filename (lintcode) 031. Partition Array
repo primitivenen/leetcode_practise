@@ -1,0 +1,16 @@
+public class Solution {
+    /*
+     * @param nums: The integer array you should partition
+     * @param k: An integer
+     * @return: The index after partition
+     */
+    public int partitionArray(int[] nums, int k) {
+        // write your code here
+        int count=0;
+        for(int num:nums){
+            if(num<k)
+                count++;
+        }
+        return count;
+    }
+}
