@@ -1,0 +1,20 @@
+public class Solution {
+    /*
+     * @param chars: The letter array you should sort by Case
+     * @return: nothing
+     */
+    public void sortLetters(char[] chars) {
+        // write your code here
+        int begin=0, end=chars.length-1;
+        while(begin<end){
+            if(Character.isUpperCase(chars[begin])){
+                char temp=chars[begin];
+                chars[begin]=chars[end];
+                chars[end]=temp;
+                end--;
+            }else{
+                begin++;
+            }
+        }
+    }
+}
