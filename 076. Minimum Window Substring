@@ -1,0 +1,28 @@
+public class Solution {
+    /*
+     * @param source : A string
+     * @param target: A string
+     * @return: A string denote the minimum window, return "" if there is no such a string
+     */
+    public String minWindow(String source , String target) {
+        // write your code here
+        int[] counts = new int[128];
+        for(int i=0; i<target.length(); i++){
+            counts[target.charAt(i)]++;
+        }
+        int counter=target.length();
+        int start=0, end=0, head=0, d=Integer.MAX_VALUE;
+        while(end<source.length()){
+            if(counts[source.charAt(end)]>0) counter--;
+            counts[source.charAt(end)]--;
+            end++;
+            while(counter==0){
+                if(end-start<d) d=end-(head=start);
+                counts[source.charAt(start)]++;
+                if(counts[source.charAt(start)]>0) counter++;
+                start++;
+            }
+        }
+        return d==Integer.MAX_VALUE? "":source.substring(head, head+d);
+    }
+}
